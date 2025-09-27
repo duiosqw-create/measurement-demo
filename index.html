@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Measurement Demo</title>
+</head>
+<body>
+  <h1>SpetsTeknika Rentals Demo</h1>
+  <p>Practice site for tracking leads.</p>
+
+  <!-- Call button -->
+  <a href="tel:+1234567890" id="call-btn">📞 Call us</a>
+
+  <!-- Lead form -->
+  <form id="lead-form" action="https://example.com/form-handler" method="POST">
+    <label>
+      Service:
+      <select name="lead_service">
+        <option value="avtovyshka">Avtovyshka</option>
+        <option value="avtokran">Avtokran</option>
+      </select>
+    </label><br>
+
+    <label>
+      City: <input type="text" name="lead_city">
+    </label><br>
+
+    <label>
+      Urgency:
+      <select name="lead_urgency">
+        <option value="today">Today</option>
+        <option value="48h">48 hours</option>
+        <option value="scheduled">Scheduled</option>
+      </select>
+    </label><br>
+
+    <!-- Hidden UTM fields -->
+    <input type="hidden" id="utm_source" name="utm_source">
+    <input type="hidden" id="utm_campaign" name="utm_campaign">
+
+    <button type="submit">Submit Request</button>
+  </form>
+
+  <!-- Script to fill UTMs -->
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    ['utm_source','utm_campaign'].forEach(k=>{
+      const v = params.get(k);
+      if(v) document.getElementById(k).value = v;
+    });
+  </script>
+</body>
+</html>
