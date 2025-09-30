@@ -1,97 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Measurement Demo</title>
-
+  
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-W5NTT98P');</script>
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-W5NTT98P');</script>
   <!-- End Google Tag Manager -->
+
   <style>
-    body { max-width: 720px; margin: 2rem auto; line-height: 1.35; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-    .row { margin: .5rem 0; }
-    .cta { display: inline-block; margin-right: 1rem; }
-    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd; }
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+    #cookie-banner button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
+
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5NTT98P"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-
+     
   <h1>SpetsTeknika Rentals Demo</h1>
   <p>Practice site for tracking leads.</p>
 
-  <!-- Header contact CTAs -->
-  <div class="row">
-    <a class="cta" id="call-header" data-cta="call_header" href="tel:+1234567890">📞 Call (Main)</a>
-    <a class="cta" id="wa-header"   data-cta="whatsapp_header" href="https://wa.me/1234567890?text=Hi%20team%2C%20need%20help">💬 WhatsApp</a>
-    <a class="cta" id="price-pdf"   data-cta="price_pdf" href="/price-list.pdf" download>⬇️ Download price list (PDF)</a>
-  </div>
+  <!-- Call button -->
+  <a href="tel:+1234567890" id="call-btn" data-cta="call_header">📞 Call us</a>
 
   <!-- Lead form -->
-  <form id="lead-form" action="" method="GET"> <!-- use GET so we can redirect to ?submitted=1 -->
-    <div class="row">
-      <label for="lead_service">Service:</label>
-      <select id="lead_service" name="lead_service" data-field="service">
+  <form id="lead-form" action="https://example.com/form-handler" method="POST">
+    <label>
+      Service:
+      <select name="lead_service">
         <option value="avtovyshka">Avtovyshka</option>
         <option value="avtokran">Avtokran</option>
       </select>
-    </div>
+    </label><br>
 
-    <div class="row">
-      <label for="lead_city">City:</label>
-      <input id="lead_city" name="lead_city" type="text" data-field="city" />
-    </div>
+    <label>
+      City: <input type="text" name="lead_city">
+    </label><br>
 
-    <div class="row">
-      <label for="lead_urgency">Urgency:</label>
-      <select id="lead_urgency" name="lead_urgency" data-field="urgency">
+    <label>
+      Urgency:
+      <select name="lead_urgency">
         <option value="today">Today</option>
         <option value="48h">48 hours</option>
         <option value="scheduled">Scheduled</option>
       </select>
-    </div>
+    </label><br>
 
-    <!-- Hidden UTM fields for later practice -->
-    <input type="hidden" id="utm_source"   name="utm_source">
-    <input type="hidden" id="utm_medium"   name="utm_medium">
+    <!-- Hidden UTM fields -->
+    <input type="hidden" id="utm_source" name="utm_source">
     <input type="hidden" id="utm_campaign" name="utm_campaign">
 
-    <button id="submit-btn" type="submit" data-cta="submit_form">Submit Request</button>
+    <button type="submit">Submit Request</button>
   </form>
 
-  <footer>
-    <!-- Footer contact CTAs (second phone number for segmentation) -->
-    <a class="cta" id="call-footer" data-cta="call_footer" href="tel:+1098765432">📞 Call (Dispatch)</a>
-  </footer>
-
-  <!-- Simple JS: persist UTMs + fake "thank you" -->
+  <!-- Script to fill UTMs -->
   <script>
     const params = new URLSearchParams(window.location.search);
-    ['utm_source','utm_medium','utm_campaign'].forEach(k=>{
+    ['utm_source','utm_campaign'].forEach(k=>{
       const v = params.get(k);
-      if (v) document.getElementById(k).value = v;
+      if(v) document.getElementById(k).value = v;
     });
+  </script>
 
-    // Fake thank-you: when form submitted, reload with ?submitted=1 so you can trigger GA4 'generate_lead'
-    const form = document.getElementById('lead-form');
-    form.addEventListener('submit', (e) => {
-      // allow normal submit but build a clean thank-you URL
-      const u = new URL(window.location.href);
-      u.searchParams.set('submitted', '1');
-      // keep the form fields in the URL for debugging
-      u.searchParams.set('lead_service', document.getElementById('lead_service').value);
-      u.searchParams.set('lead_city', document.getElementById('lead_city').value);
-      u.searchParams.set('lead_urgency', document.getElementById('lead_urgency').value);
-      window.location.assign(u.toString());
-      e.preventDefault();
+  <!-- Minimal cookie banner -->
+  <div id="cookie-banner">
+    This site uses cookies for analytics.
+    <button id="accept-cookies">Accept</button>
+  </div>
+
+  <script>
+    document.getElementById("accept-cookies").addEventListener("click", function() {
+      dataLayer.push({ event: "consent_granted" });
+      document.getElementById("cookie-banner").style.display = "none";
+      console.log("Consent granted pushed to dataLayer");
     });
   </script>
 </body>
