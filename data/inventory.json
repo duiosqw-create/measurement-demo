@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "id": "avtovyshka_small", "doc_days": 14, "badge": "Bestseller" },
+    { "id": "avtokran_25t", "doc_days": 9, "badge": "New" },
+    { "id": "avtokran_50t", "doc_days": 5, "badge": "Limited" }
+  ]
+}
+

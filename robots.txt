@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Note: robots ignore URL fragments; we block query-based debug instead
+Disallow: /*?debug=1
+
+Sitemap: https://your-domain.example/sitemap.xml
+

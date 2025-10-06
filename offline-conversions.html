@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline Conversions Simulator</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 20px; }
+    .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    textarea { width: 100%; height: 160px; }
+    pre { background:#111; color:#ddd; padding:10px; overflow:auto; }
+    .btn { padding:8px 12px; border:1px solid #ccc; background:#f5f5f5; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <h1>Offline Conversions (Calls) — CSV Join Demo</h1>
+  <p>Paste a CSV with columns: timestamp,caller,landing_url,gclid,utm_source,utm_campaign,call_connected,call_duration_sec</p>
+  <div class="row">
+    <textarea id="csv"></textarea>
+  </div>
+  <div class="row">
+    <button id="parse" class="btn">Parse & Match</button>
+    <button id="export" class="btn">Export GA4/Ads CSV</button>
+  </div>
+  <h3>Preview</h3>
+  <pre id="out"></pre>
+  <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+  <script>
+    (function(){
+      var out = document.getElementById('out');
+      var rows = [];
+      function getUTMs(url){ try { var u=new URL(url); return { utm_source:u.searchParams.get('utm_source'), utm_campaign:u.searchParams.get('utm_campaign'), gclid:u.searchParams.get('gclid') }; } catch(e){ return {}; } }
+      function matchRow(r){
+        var utm = getUTMs(r.landing_url||'');
+        var key = utm.gclid || (utm.utm_source+'|'+utm.utm_campaign);
+        return { event_name:'imported_conversion', timestamp:r.timestamp, gclid:utm.gclid||'', utm_source:utm.utm_source||'', utm_campaign:utm.utm_campaign||'', call_connected:r.call_connected, call_duration_sec:r.call_duration_sec, match_key:key };
+      }
+      function renderPreview(){ out.textContent = JSON.stringify(rows.slice(0,20), null, 2) + (rows.length>20?'\n...('+rows.length+' rows)':''); }
+      document.getElementById('parse').addEventListener('click', function(){
+        var csv = document.getElementById('csv').value; if (!csv.trim()) { alert('Paste CSV first'); return; }
+        Papa.parse(csv, { header:true, skipEmptyLines:true, complete:function(res){ rows = res.data.map(matchRow); renderPreview(); } });
+      });
+      document.getElementById('export').addEventListener('click', function(){
+        if (!rows.length) { alert('Nothing to export'); return; }
+        var headers = ['event_name','timestamp','gclid','utm_source','utm_campaign','call_connected','call_duration_sec','match_key'];
+        var csv = headers.join(',')+'\n'+rows.map(function(r){ return headers.map(function(h){ return '"'+(r[h]||'')+'"'; }).join(','); }).join('\n');
+        var blob = new Blob([csv], { type:'text/csv' });
+        var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'imported_conversions.csv'; a.click();
+      });
+    })();
+  </script>
+</body>
+</html>
+
