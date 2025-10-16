@@ -35,6 +35,20 @@
     });
   </script>
 
+  <script>
+    (function(){
+      var f = document.getElementById('lead-inline-form');
+      if (!f) return;
+      f.addEventListener('submit', function(e){
+        e.preventDefault();
+        var ok = f.form_service.value && f.city.value && f.urgency.value;
+        if (!ok) { alert('Please fill required fields.'); return; }
+        var msg = document.getElementById('lead-inline-success'); if (msg) msg.style.display = 'block';
+        f.reset();
+      });
+    })();
+  </script>
+
   <style>
     /* Design tokens */
     :root {
@@ -120,6 +134,11 @@
     .card { background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-lg); }
     .card h3 { margin: 0 0 8px; font-size: 18px; }
     .card p { margin: 0 0 12px; color: var(--muted); }
+
+    /* Inline lead form */
+    .lead-section form { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .lead-section form label { display: block; }
+    @media (max-width: 900px) { .lead-section form { grid-template-columns: 1fr; } }
 
     /* FAQ */
     details { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; background: rgba(255,255,255,0.02); }
@@ -275,6 +294,35 @@
             <a href="tel:+1234567890" class="btn">Or call us</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="lead-inline" class="lead-section">
+      <div class="container">
+        <h2 class="section-title">Get a quick quote</h2>
+        <form id="lead-inline-form" novalidate>
+          <label>Service<br>
+            <select name="form_service" required>
+              <option value="avtovyshka">Avtovyshka</option>
+              <option value="avtokran">Avtokran</option>
+            </select>
+          </label>
+          <label>City<br>
+            <input type="text" name="city" placeholder="Kyiv" required>
+          </label>
+          <label>Budget estimate<br>
+            <input type="text" name="budget_estimate" placeholder="$ per hour">
+          </label>
+          <label>Urgency<br>
+            <select name="urgency" required>
+              <option value="today">Today</option>
+              <option value="48h">48 hours</option>
+              <option value="scheduled">Scheduled</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <p id="lead-inline-success" style="display:none;color:var(--accent);margin-top:8px;">Thank you! We'll contact you shortly.</p>
       </div>
     </section>
 
