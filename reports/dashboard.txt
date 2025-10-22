@@ -1,0 +1,47 @@
+# Looker Studio Dashboard
+
+## Dashboard Link
+[Your Looker Studio Dashboard URL will go here]
+
+## Data Sources
+1. **GA4 Connection:** [GA4 Property Name]
+2. **Google Sheets:** Leads spreadsheet
+
+## Key Charts
+
+### Conversion Funnel
+- Sessions → Form Views → Form Starts → Form Submits → Sheet Leads
+- Breakdown by traffic source and campaign
+
+### Lead Quality Table
+- Timestamp, Name, Email, Spec, City, UTM Source, Manual HQ Rating
+- Filterable by date range and quality score
+
+### Performance Heatmap
+- Conversion rate by hour of day × day of week
+- Color-coded for easy identification of peak times
+
+### A/B Test Results
+- Variant performance comparison
+- Statistical significance indicators
+- Recommendation engine for shipping variants
+
+## Decision Tiles
+- "Ship Variant if SQL/1k sessions ≥ +15% over 7 days"
+- "Reallocate posting to strong hours if ≥1.5× median"
+- "Alert if form completion rate drops below 15%"
+
+## Refresh Schedule
+- **Real-time:** GA4 data (automatic)
+- **Daily:** Google Sheets data (manual refresh)
+- **Weekly:** Performance summaries and trends
+
+## Access
+- **Viewers:** [List of stakeholders with view access]
+- **Editors:** [List of users who can modify dashboard]
+- **Owners:** [Primary dashboard owner]
+
+## Notes
+- Dashboard should be bookmarked by all stakeholders
+- Regular review meetings scheduled monthly
+- Alerts set up for significant performance changes

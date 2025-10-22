@@ -1,5 +1,0 @@
-{
-  "sticky": { "variants": { "immediate": 50, "dwell": 50 } },
-  "form_copy": { "variants": { "a": 50, "b": 50 } }
-}
-

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Services - Get Your Quote Today</title>
+  <meta name="description" content="Fast, reliable professional services. Get a quote in minutes. Same-day response, qualified operators, insured work.">
+  <link rel="canonical" href="https://example.com/">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Professional Services - Get Your Quote Today">
+  <meta property="og:description" content="Fast, reliable professional services. Get a quote in minutes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Professional Services - Get Your Quote Today">
+  <meta name="twitter:description" content="Fast, reliable professional services. Get a quote in minutes.">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="assets/css/main.css" as="style">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Professional Services Co",
+    "url": "https://example.com/",
+    "telephone": "+44-1234-567890",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "London",
+      "addressCountry": "GB"
+    },
+    "areaServed": "GB",
+    "serviceType": "Professional Services"
+  }
+  </script>
+</head>
+<body>
+  <!-- Skip to content -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="8" fill="#2563eb"/>
+            <path d="M12 16h16v2H12v-2zm0 4h16v2H12v-2zm0 4h12v2H12v-2z" fill="white"/>
+          </svg>
+          <span>ProServices</span>
+        </div>
+        <nav class="nav">
+          <a href="#faq">FAQ</a>
+          <a href="privacy.html">Privacy</a>
+        </nav>
+        <div class="header-ctas">
+          <a href="tel:+441234567890" class="btn btn-outline" data-track="click_call">📞 Call</a>
+          <a href="https://wa.me/441234567890" class="btn btn-primary" data-track="click_whatsapp">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 data-variant-a="Professional Services Done Right" data-variant-b="Expert Services, Fast Results">
+            Professional Services Done Right
+          </h1>
+          <p class="hero-subtitle">
+            Get your project completed by qualified professionals. Same-day response, insured work, transparent pricing.
+          </p>
+          <a href="#form" class="btn btn-primary btn-large" data-track="hero_cta">
+            Get Your Quote
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Panel -->
+    <section class="trust-panel">
+      <div class="container">
+        <div class="trust-items">
+          <div class="trust-item">
+            <div class="trust-icon">⚡</div>
+            <h3>Same-Day Response</h3>
+            <p>We respond to all inquiries within 24 hours</p>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🛡️</div>
+            <h3>Fully Insured</h3>
+            <p>All work is covered by comprehensive insurance</p>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">✅</div>
+            <h3>Qualified Operators</h3>
+            <p>Certified professionals with proven experience</p>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">💰</div>
+            <h3>Transparent Pricing</h3>
+            <p>No hidden fees, clear quotes upfront</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pre-router -->
+    <section class="pre-router">
+      <div class="container">
+        <h2>Tell us about your project</h2>
+        <div class="router-controls">
+          <div class="control-group">
+            <label for="spec">Service Type</label>
+            <select id="spec" name="spec">
+              <option value="">Select service...</option>
+              <option value="electrical">Electrical</option>
+              <option value="plumbing">Plumbing</option>
+              <option value="hvac">HVAC</option>
+              <option value="general">General Maintenance</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="city">Location</label>
+            <select id="city" name="city">
+              <option value="">Select city...</option>
+              <option value="london">London</option>
+              <option value="manchester">Manchester</option>
+              <option value="birmingham">Birmingham</option>
+              <option value="liverpool">Liverpool</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lead Form -->
+    <section id="form" class="form-section">
+      <div class="container">
+        <h2>Get Your Quote</h2>
+        <form id="lead" class="lead-form" novalidate>
+          <div aria-live="polite" class="form-errors" id="formErrors"></div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" autocomplete="name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+44 1234 567890">
+            </div>
+            <div class="form-group">
+              <label for="message">Project Details</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project..."></textarea>
+            </div>
+          </div>
+          
+          <!-- Honeypot -->
+          <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+          
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="consent" required>
+              <span class="checkmark"></span>
+              I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a> *
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-large">Get Quote</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How quickly can you respond?</summary>
+            <p>We respond to all inquiries within 24 hours, often same-day for urgent requests.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Are you fully insured?</summary>
+            <p>Yes, all our work is covered by comprehensive insurance for your peace of mind.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you provide free quotes?</summary>
+            <p>Absolutely. We provide detailed, no-obligation quotes for all projects.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What areas do you cover?</summary>
+            <p>We cover London, Manchester, Birmingham, Liverpool and surrounding areas.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky Contact Bar (Mobile) -->
+  <div class="sticky-bar" id="stickyBar">
+    <div class="container">
+      <a href="tel:+441234567890" class="sticky-btn" data-track="click_call">📞 Call</a>
+      <a href="https://wa.me/441234567890" class="sticky-btn" data-track="click_whatsapp">WhatsApp</a>
+      <a href="#form" class="sticky-btn sticky-btn-primary" data-track="sticky_quote">Get Quote</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <h3>Professional Services Co</h3>
+          <p>123 Business Street<br>London, UK SW1A 1AA</p>
+          <p>Company No: 12345678</p>
+        </div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Professional Services Co. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Consent Banner -->
+  <div id="consent" class="consent hidden" role="dialog" aria-live="polite">
+    <div class="consent-content">
+      <p>We use analytics to improve our service. You can accept or decline.</p>
+      <div class="consent-buttons">
+        <button id="consent-accept" class="btn btn-primary">Accept analytics</button>
+        <button id="consent-decline" class="btn btn-outline">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/utm.js"></script>
+  <script src="assets/js/consent.js"></script>
+  <script src="assets/js/ab.js"></script>
+  <script src="assets/js/tracking.js"></script>
+  <script src="assets/js/form.js"></script>
+
+  <!-- FAQ JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How quickly can you respond?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We respond to all inquiries within 24 hours, often same-day for urgent requests."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are you fully insured?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, all our work is covered by comprehensive insurance for your peace of mind."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you provide free quotes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. We provide detailed, no-obligation quotes for all projects."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas do you cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We cover London, Manchester, Birmingham, Liverpool and surrounding areas."
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
