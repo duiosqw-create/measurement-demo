@@ -2,43 +2,44 @@
 <html lang="en">
 <head>
   <!-- Cookiebot CMP -->
-<script id="Cookiebot"
-src="https://consent.cookiebot.com/uc.js"
-data-cbid="da6f21e9-a8d2-4280-8b95-0f5db2c1df39"
-data-blockingmode="auto"
-type="text/javascript">
-</script>
+  <script id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="da6f21e9-a8d2-4280-8b95-0f5db2c1df39"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
 
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-MR82J2LS');</script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MR82J2LS');</script>
   <!-- End Google Tag Manager -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Professional Services - Get Your Quote Today</title>
   <meta name="description" content="Fast, reliable professional services. Get a quote in minutes. Same-day response, qualified operators, insured work.">
   <link rel="canonical" href="https://example.com/">
-  
+
   <!-- Open Graph -->
   <meta property="og:title" content="Professional Services - Get Your Quote Today">
   <meta property="og:description" content="Fast, reliable professional services. Get a quote in minutes.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://example.com/">
-  
+
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Professional Services - Get Your Quote Today">
   <meta name="twitter:description" content="Fast, reliable professional services. Get a quote in minutes.">
-  
+
   <!-- Preload critical resources -->
   <link rel="preload" href="assets/css/main.css" as="style">
-  
+
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/main.css">
-  
+
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -59,12 +60,13 @@ type="text/javascript">
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MR82J2LS"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MR82J2LS"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+
   <!-- Skip to content -->
   <a href="#main" class="skip-link">Skip to main content</a>
-  
+
   <!-- Header -->
   <header class="header">
     <div class="container">
@@ -81,8 +83,25 @@ type="text/javascript">
           <a href="privacy.html">Privacy</a>
         </nav>
         <div class="header-ctas">
-          <a href="tel:+441234567890" class="btn btn-outline" data-track="click_call">📞 Call</a>
-          <a href="https://wa.me/441234567890" class="btn btn-primary" data-track="click_whatsapp">WhatsApp</a>
+          <!-- tracking: added data-cta-* -->
+          <a href="tel:+441234567890"
+             class="btn btn-outline"
+             data-track="click_call"
+             data-cta-type="call"
+             data-cta-label="Call header"
+             data-cta-location="header"
+             data-service="general"
+             data-cta-variant="secondary">📞 Call</a>
+
+          <!-- tracking: added data-cta-* -->
+          <a href="https://wa.me/441234567890"
+             class="btn btn-primary"
+             data-track="click_whatsapp"
+             data-cta-type="whatsapp"
+             data-cta-label="WhatsApp header"
+             data-cta-location="header"
+             data-service="general"
+             data-cta-variant="primary">WhatsApp</a>
         </div>
       </div>
     </div>
@@ -100,7 +119,15 @@ type="text/javascript">
           <p class="hero-subtitle">
             Get your project completed by qualified professionals. Same-day response, insured work, transparent pricing.
           </p>
-          <a href="#form" class="btn btn-primary btn-large" data-track="hero_cta">
+          <!-- tracking: optional data-cta-* (non-call/wa CTA but useful) -->
+          <a href="#form"
+             class="btn btn-primary btn-large"
+             data-track="hero_cta"
+             data-cta-type="form"
+             data-cta-label="Get Quote hero"
+             data-cta-location="hero"
+             data-service="general"
+             data-cta-variant="primary">
             Get Your Quote
           </a>
         </div>
@@ -170,7 +197,7 @@ type="text/javascript">
         <h2>Get Your Quote</h2>
         <form id="lead" class="lead-form" novalidate>
           <div aria-live="polite" class="form-errors" id="formErrors"></div>
-          
+
           <div class="form-row">
             <div class="form-group">
               <label for="name">Name *</label>
@@ -181,7 +208,7 @@ type="text/javascript">
               <input type="email" id="email" name="email" autocomplete="email" placeholder="your@email.com" required>
             </div>
           </div>
-          
+
           <div class="form-row">
             <div class="form-group">
               <label for="phone">Phone</label>
@@ -192,10 +219,10 @@ type="text/javascript">
               <textarea id="message" name="message" placeholder="Tell us about your project..."></textarea>
             </div>
           </div>
-          
+
           <!-- Honeypot -->
           <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
-          
+
           <div class="form-group">
             <label class="checkbox-label">
               <input type="checkbox" id="consent" required>
@@ -203,7 +230,7 @@ type="text/javascript">
               I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a> *
             </label>
           </div>
-          
+
           <button type="submit" class="btn btn-primary btn-large">Get Quote</button>
         </form>
       </div>
@@ -238,9 +265,35 @@ type="text/javascript">
   <!-- Sticky Contact Bar (Mobile) -->
   <div class="sticky-bar" id="stickyBar">
     <div class="container">
-      <a href="tel:+441234567890" class="sticky-btn" data-track="click_call">📞 Call</a>
-      <a href="https://wa.me/441234567890" class="sticky-btn" data-track="click_whatsapp">WhatsApp</a>
-      <a href="#form" class="sticky-btn sticky-btn-primary" data-track="sticky_quote">Get Quote</a>
+      <!-- tracking: added data-cta-* -->
+      <a href="tel:+441234567890"
+         class="sticky-btn"
+         data-track="click_call"
+         data-cta-type="call"
+         data-cta-label="Call sticky"
+         data-cta-location="sticky-bar"
+         data-service="general"
+         data-cta-variant="secondary">📞 Call</a>
+
+      <!-- tracking: added data-cta-* -->
+      <a href="https://wa.me/441234567890"
+         class="sticky-btn"
+         data-track="click_whatsapp"
+         data-cta-type="whatsapp"
+         data-cta-label="WhatsApp sticky"
+         data-cta-location="sticky-bar"
+         data-service="general"
+         data-cta-variant="secondary">WhatsApp</a>
+
+      <!-- tracking: optional data-cta-* -->
+      <a href="#form"
+         class="sticky-btn sticky-btn-primary"
+         data-track="sticky_quote"
+         data-cta-type="form"
+         data-cta-label="Get Quote sticky"
+         data-cta-location="sticky-bar"
+         data-service="general"
+         data-cta-variant="primary">Get Quote</a>
     </div>
   </div>
 
@@ -264,7 +317,7 @@ type="text/javascript">
     </div>
   </footer>
 
-  <!-- Consent Banner -->
+  <!-- Consent Banner (legacy/custom). If you keep Cookiebot, consider removing this to avoid duplicate UIs. -->
   <div id="consent" class="consent hidden" role="dialog" aria-live="polite">
     <div class="consent-content">
       <p>We use analytics to improve our service. You can accept or decline.</p>
