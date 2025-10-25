@@ -467,6 +467,18 @@
       }
     })();
     </script>
-    
+    <script>
+      document.querySelector('#lead').addEventListener('focusin', e => {
+        if (!window.formStarted) {
+          dataLayer.push({
+            event: 'start_form',
+            form_id: 'lead',
+            field_name: e.target.name
+          });
+          window.formStarted = true;
+        }
+      });
+      </script>
+      
 </body>
 </html>
