@@ -468,8 +468,12 @@
     })();
     </script>
     <script>
+      // Global flag to ensure "start_form" fires only once per page load
+      window.formStarted = window.formStarted || false;
+    
       document.querySelector('#lead').addEventListener('focusin', e => {
-        if (!window.formStarted) {
+        // Only fire once, and only when focusing inside the #lead form
+        if (!window.formStarted && e.target.closest('#lead')) {
           dataLayer.push({
             event: 'start_form',
             form_id: 'lead',
@@ -478,7 +482,7 @@
           window.formStarted = true;
         }
       });
-      </script>
-      
+    </script>
+    
 </body>
 </html>
