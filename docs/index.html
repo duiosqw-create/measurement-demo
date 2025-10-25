@@ -318,7 +318,7 @@
   </footer>
 
   <!-- Consent Banner (legacy/custom). If you keep Cookiebot, consider removing this to avoid duplicate UIs. -->
-  <div id="consent" class="consent hidden" role="dialog" aria-live="polite">
+  <div id="consent_banner" class="consent hidden" role="dialog" aria-live="polite">
     <div class="consent-content">
       <p>We use analytics to improve our service. You can accept or decline.</p>
       <div class="consent-buttons">
@@ -376,5 +376,97 @@
     ]
   }
   </script>
+  <script>
+    /* Lightweight analytics helpers for GTM/GA4 form behavior events.
+       No PII is sent. Does not set cookies. Consent still gates GA4 tags. */
+    window.dataLayer = window.dataLayer || [];
+    (function () {
+      // de-dupe guard
+      window.__evtFlags = window.__evtFlags || {};
+      function pushEvent(name, params, onceKey) {
+        if (onceKey && window.__evtFlags[onceKey]) return;
+        if (onceKey) window.__evtFlags[onceKey] = true;
+        window.dataLayer.push(Object.assign({ event: name }, params || {}));
+      }
+    
+      // helpers
+      function getVal(id){ var el=document.getElementById(id); return el ? (el.value || "") : ""; }
+    
+      // form ref
+      var form = document.getElementById("lead");
+    
+      // 1) view_form when form becomes visible
+      if (form && "IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (ent) {
+            if (ent.isIntersecting) {
+              pushEvent("view_form", {
+                form_id: "lead",
+                spec: getVal("spec"),
+                city: getVal("city")
+              }, "view_form_once");
+              io.disconnect();
+            }
+          });
+        }, { threshold: 0.25 });
+        io.observe(form);
+      } else if (form) {
+        // fallback if IO not supported
+        pushEvent("view_form", { form_id: "lead", spec: getVal("spec"), city: getVal("city") }, "view_form_once");
+      }
+    
+      // 2) start_form on first focus inside the form
+      if (form) {
+        function onFirstFocus(e) {
+          var t = e.target || {};
+          var fname = (t.getAttribute && t.getAttribute("name")) || t.id || "";
+          pushEvent("start_form", {
+            form_id: "lead",
+            field: fname.toLowerCase(),
+            spec: getVal("spec"),
+            city: getVal("city")
+          }, "start_form_once");
+          form.removeEventListener("focusin", onFirstFocus);
+        }
+        form.addEventListener("focusin", onFirstFocus);
+      }
+    
+      // tiny validator for analytics-only error signals
+      function validateForAnalytics(f) {
+        var errs = [];
+        function add(field, type){ errs.push({ field: field, error_type: type }); }
+        var name = f.querySelector("#name");
+        var email = f.querySelector("#email");
+        var consentCb = f.querySelector('input[type="checkbox"][id="consent"]')
+                      || f.querySelector('input[type="checkbox"][name="consent"]');
+        if (name && !name.value.trim()) add("name","required");
+        if (email) {
+          var v = email.value.trim();
+          if (!v) add("email","required");
+          else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) add("email","format");
+        }
+        if (consentCb && !consentCb.checked) add("consent","required");
+        return errs;
+      }
+    
+      // 3) field_error for each failing field, 4) submit_form intent (no PII)
+      if (form) {
+        form.addEventListener("submit", function () {
+          // ensure we caught users who jump straight to submit
+          pushEvent("start_form", { form_id:"lead", field:"submit_button", spec:getVal("spec"), city:getVal("city") }, "start_form_once");
+    
+          var errs = validateForAnalytics(form);
+          if (errs.length) {
+            errs.forEach(function (e) {
+              pushEvent("field_error", { form_id: "lead", field: e.field, error_type: e.error_type });
+            });
+          }
+          // intent to submit (final conversion happens server-side/CRM)
+          pushEvent("submit_form", { form_id: "lead", spec:getVal("spec"), city:getVal("city") });
+        }, true);
+      }
+    })();
+    </script>
+    
 </body>
 </html>
