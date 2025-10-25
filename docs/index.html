@@ -468,21 +468,29 @@
     })();
     </script>
     <script>
-      // Global flag to ensure "start_form" fires only once per page load
       window.formStarted = window.formStarted || false;
-    
+      
       document.querySelector('#lead').addEventListener('focusin', e => {
-        // Only fire once, and only when focusing inside the #lead form
         if (!window.formStarted && e.target.closest('#lead')) {
-          dataLayer.push({
-            event: 'start_form',
-            form_id: 'lead',
-            field_name: e.target.name
-          });
           window.formStarted = true;
+      
+          const form = e.target.closest('form');
+          const formId = form?.id || null;
+          const fieldName = e.target.name || null;
+      
+          // Single push with all parameters prefilled
+          window.dataLayer.push({
+            event: 'start_form',
+            form_id: formId,
+            field_name: fieldName,
+            form_variant: 'A', // optional — add if your site has A/B versions
+            spec: document.querySelector('#spec')?.value || null,
+            city: document.querySelector('#city')?.value || null,
+            page_url: window.location.href
+          });
         }
       });
-    </script>
-    
+      </script>
+      
 </body>
 </html>
